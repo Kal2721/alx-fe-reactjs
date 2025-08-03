@@ -23,7 +23,7 @@ const Search = ({onSearch }: SearchProps) => {
 			const data = await fetchUserData(username.trim());
 			setUserData(data);
 		} catch (err) {
-			setError("Looks like we can't find the user");
+			setError("Looks like we cant find the user");
 		} finally {
 			setLoading(false);
 		}
@@ -40,7 +40,7 @@ const Search = ({onSearch }: SearchProps) => {
 		{error && <p>{error}</p>}
 		{user && (
 			<div className="border p-4 rounded shadow mt-4 text-center">
-				<img src={userData.avater} alt= {userData.login} className="w-24 h-24 rounded-full mx-auto mb-2" />
+				<img src={userData.avatar_url} alt= {userData.login} className="w-24 h-24 rounded-full mx-auto mb-2" />
 				<h2 className="text-lg font-semibold">{userData.name || userData.login}</h2>
 				<a href={userData.html_url} target="_blank" rel="nooopener noreferrer" className="text-blue-600 underline">View Github Profile</a>
 			</div>

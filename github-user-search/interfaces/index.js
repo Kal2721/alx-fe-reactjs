@@ -4,7 +4,7 @@ export interface SearchProps {
 
 export interface GitHubUser {
 	login: string;
-	avater: string;
+	avatar_url: string;
 	html_url: string;
 	name: string;
 }
