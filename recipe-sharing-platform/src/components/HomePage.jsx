@@ -2,37 +2,37 @@ import { useState, useEffect } from "react";
 
 const HomePage = () => {
 	const [recipes, setRecipes] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = usestate(null);
 
 	useEffect(() => {
-		let cancelled = false;
-
 		fetch("/data.json")
-		.then((response) => {
-			if(!response.ok) {
-				throw new Error("Failed to load recipe data");
-				return response.json();
-			})
-		.then((data) => {
-			if (!cancelled) setRecipe(data || []);
-		})
-		.catch((error) => {
-			if (!cancelled) setError(error.message || "Unkown error ocurred")
-			})
-		.finally(() => {
-			if(!cancelled) setLoading(false);
-		});
-
-		return () => {
-			cancelled = true;
-		};
+		.then((response) => response.json())
+		.then((data) => setRecipe(data));
+		.catch((error) => console.error("Error loading recipes", error));
 		}, []);
 	return (
-		<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-			<header className="flex items-center justify-between mb-6">
-				<h2 className="text-2xl font-semibold">Recipe list</h2>
-			</header>
-			<h1>Recipe List</h1>
-			{recipe.length === 0 ? (<p>Loading...</p>) : (
-				<
+		<div className="container mx-auto px-4 py-8">
+			<h1 className="text-3xl font-bold text-center mb-8"> Recipe Lists</h1>
+
+			<div classname="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+		{recipes.map((recipe) => (
+			<div
+			key= {recipe.id}
+			className="bg-[#658D6D] text-white-600 rounded-2xl shadow-md overflow-hidden hover:shadow"
+			>
+				<img
+				src={recipe.image}
+				alt={recipe.title}
+				className="w-full h-48 object-cover"
+				/>
+				<div className="p-4">
+					<h2 className="text-xl font-semibold mb-2">{recipe.title}</h2>
+					<p className="text-white-500 text-sm">{recipe.summary}</p>
+				</div>
+			</div>
+		))}
+		</div>
+		</div>
+	);
+}
+
+export default HomePage;
