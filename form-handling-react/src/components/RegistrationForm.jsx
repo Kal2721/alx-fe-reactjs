@@ -10,15 +10,15 @@ const RegistrationForm = () => {
 		e.preventDefault();
 
 		if (!username) {
-			setError("This field is required.");
+			setErrors("This field is required.");
 			return;
 		}
 		if (!email) {
-                        setError("This field is required.");
+                        setErrors("This field is required.");
                         return;
                 }
 		if (!password) {
-                        setError("This field is required.");
+                        setErrors("This field is required.");
                         return;
                 }
 
