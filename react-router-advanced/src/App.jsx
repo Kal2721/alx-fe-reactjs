@@ -14,7 +14,7 @@ function App() {
 	  			<Route path="settings" element={<ProfileSettings />} />
 	  		</Route>
 	  		<Route path="/user/:userId" element={<UserProfile />} />
-	  		<Route path="/blog/:postId" element={<BlogPost />} />
+	  		<Route path="/blog/:id" element={<BlogPost />} />
 	  	</Routes>
 	  <Router>
   )
